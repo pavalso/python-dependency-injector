@@ -7,6 +7,13 @@ that were made in every particular version.
 From version 0.7.6 *Dependency Injector* framework strictly
 follows `Semantic versioning`_
 
+4.48.3
+------
+
+- Allow annotated marker to be anywhere in the annotation list. Thanks to `@BrianPugh <https://github.com/BrianPugh>`_ for `#939 <https://github.com/ets-labs/python-dependency-injector/issues/939>`_.
+- Fix FastDepends v3 compatibility. Thanks to `@AndrianEquestrian <https://github.com/AndrianEquestrian>`_ for `#933 <https://github.com/ets-labs/python-dependency-injector/issues/933>`_.
+- Various type annotation improvements for providers. Thanks to `@leonarduschen <https://github.com/leonarduschen>`_ for `#927 <https://github.com/ets-labs/python-dependency-injector/pull/927>`_, `#932 <https://github.com/ets-labs/python-dependency-injector/pull/932>`_ and `#935 <https://github.com/ets-labs/python-dependency-injector/pull/935>`_.
+
 4.48.2
 ------
 
