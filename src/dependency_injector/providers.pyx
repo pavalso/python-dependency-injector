@@ -40,8 +40,9 @@ try:
 except ImportError:
     yaml = None
 
-has_pydantic_settings = True
+has_pydantic_settings = False
 cdef bint pydantic_v1 = False
+cdef object PydanticSettings = None
 cdef str pydantic_module = "pydantic_settings"
 cdef str pydantic_extra = "pydantic2"
 
@@ -49,15 +50,19 @@ try:
     from pydantic_settings import BaseSettings as PydanticSettings
 except ImportError:
     try:
-        # pydantic-settings requires pydantic v2,
-        # so it is safe to assume that we're dealing with v1:
-        from pydantic import BaseSettings as PydanticSettings
-        pydantic_v1 = True
-        pydantic_module = "pydantic"
-        pydantic_extra = "pydantic"
+        import pydantic
     except ImportError:
-        # if it is present, ofc
-        has_pydantic_settings = False
+        pass
+    else:
+        # Avoid triggering deprecation warning in v2+
+        if pydantic.VERSION.startswith("1."):
+            PydanticSettings = pydantic.BaseSettings
+            pydantic_v1 = True
+            pydantic_module = "pydantic"
+            pydantic_extra = "pydantic"
+            has_pydantic_settings = True
+else:
+    has_pydantic_settings = True
 
 
 from .errors import (
