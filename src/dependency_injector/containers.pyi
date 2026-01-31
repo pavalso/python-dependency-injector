@@ -73,6 +73,7 @@ class Container:
         modules: Optional[Iterable[Any]] = None,
         packages: Optional[Iterable[Any]] = None,
         from_package: Optional[str] = None,
+        keep_cache: bool | None = None,
         warn_unresolved: bool = False,
     ) -> None: ...
     def unwire(self) -> None: ...
