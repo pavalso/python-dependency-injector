@@ -5,11 +5,17 @@ class Service:
 class ServiceWithCallable:
     def __init__(self):
         self.foo = CallableDict({"bar": lambda: 10})
-        self.method_with_args = lambda x, y: x + y
-        self.method_with_kwargs = lambda **kwargs: kwargs
+
+    def method_with_args(self, x, y):
+        return x + y
+
+    def method_with_kwargs(self, **kwargs):
+        return kwargs
 
 
 class CallableDict(dict):
-    def __init__(self, data):
-        super().__init__(data)
-        self.process = lambda *args, **kwargs: {"args": args, "kwargs": kwargs}
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def process(self, *args, **kwargs):
+        return {"args": args, "kwargs": kwargs}
